@@ -2,6 +2,7 @@
 
 $dump = file_get_contents("gigaset_c430hx.bin");
 $offset = 0;
+@mkdir("midi-export");
 
 while (true)
 {
@@ -13,7 +14,7 @@ while (true)
 	}
 
 	$end = find_midi_end_at_offset($dump, $midi_header_pos);
-	file_put_contents("extract-".$midi_header_pos.".mid", substr($dump, $midi_header_pos, $end - $midi_header_pos));
+	file_put_contents("midi-export/extract-".$midi_header_pos.".mid", substr($dump, $midi_header_pos, $end - $midi_header_pos));
 
 	$offset = $end;
 }
